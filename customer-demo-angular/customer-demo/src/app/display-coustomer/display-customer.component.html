@@ -1,0 +1,83 @@
+<div>
+    <app-perspective></app-perspective>
+
+</div>
+
+<h1 align="center">Details Of Customer</h1>
+<div class="container-fluid">
+    <input
+        type="search"
+        id="form1"
+        class="form-control"
+        placeholder="Enter The you want to Search"
+        (change)="search($event)"
+    >
+    <br>
+    <br>
+    <div
+        align="right"
+        class="mr-4 mb-2"
+    >
+        <button
+            class="btn btn-success"
+            [routerLink]="['/createCustomer']"
+        >
+            Add
+        </button>
+    </div>
+
+    <table
+        border="1"
+        class="table table-dark"
+    >
+        <tbody>
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>View</td>
+                <td>Delete</td>
+                <td>Update</td>
+            </tr>
+            <tr *ngFor="let cus of customer.content |  paginate: config">
+                <td>{{cus.id}}</td>
+                <td>{{cus.name}}</td>
+                <td>
+                    <button
+                        type="button"
+                        [routerLink]="['/details', cus.id]"
+                        class="btn btn-secondary"
+                    >
+                        View
+                    </button>
+                </td>
+                <td>
+                    <button
+                        type="button"
+                        (click)="deleteRecord(cus.id)"
+                        class="btn btn-danger"
+                    >
+                        Delete
+                    </button>
+                </td>
+                <td>
+                    <button
+                        type="button"
+                        [routerLink]="['/updateCustomer', cus.id]"
+                        class="btn btn-primary"
+                    >
+                        Update
+                    </button>
+
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <div align="center">
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+
+    </div>
+
+</div>

@@ -1,0 +1,35 @@
+<button
+    type="button"
+    class="btn btn-primary"
+    [routerLink]="['']"
+>
+    Back
+</button>
+<br>
+<br>
+<h1>Details Consultant</h1>
+
+<div *ngIf="consulantat.length != 0 ; else elseBlock">
+    <table
+        border="1"
+        class="table table-dark"
+    >
+        <tbody>
+            <tr>
+                <td>id</td>
+                <td>name</td>
+            </tr>
+            <tr *ngFor="let cus of consulantat |  paginate: config">
+                <td>{{cus.id}}</td>
+                <td>{{cus.name}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div align="center">
+        <pagination-controls (pageChange)="pageChange($event)"></pagination-controls>
+
+    </div>
+</div>
+<ng-template #elseBlock>
+    <h1>No Data Found</h1>
+</ng-template>

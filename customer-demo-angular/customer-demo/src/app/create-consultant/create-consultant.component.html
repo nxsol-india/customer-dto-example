@@ -1,0 +1,30 @@
+<h1 align="center">Creat Consultant</h1>
+<div class="container">
+    <form
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+    >
+        <div class="form-group">
+            <input
+                type="input"
+                formControlName="name"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+                placeholder="Enter The Consultant Name"
+            >
+            <div
+                *ngIf="submitted && f.name.errors"
+                class="invalid-feedback"
+            >
+                <div *ngIf="f.name.errors.required">First Name is required</div>
+            </div>
+        </div>
+
+        <button
+            type="submit"
+            class="btn btn-primary"
+        >
+            Submit
+        </button>
+    </form>
+</div>
