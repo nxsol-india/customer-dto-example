@@ -32,14 +32,9 @@ public class ConsultantController {
 		return service.search(pageable, searchText);
 	}
 
-	@GetMapping("")
+	@GetMapping
 	public Page<ConsultantDto> readAll(Pageable pageable) {
 		return service.readAll(pageable);
-	}
-	
-	@GetMapping("/readByCoustomerId/{id}")
-	public Page<ConsultantDto> readConsultantByCoustomerId(Pageable pageable ,@PathVariable Integer id) {
-		return service.readByCoustomerId(pageable,id);
 	}
 	
 	@GetMapping("/{id}")
@@ -47,12 +42,12 @@ public class ConsultantController {
 		return service.read(id).orElse(null);
 	}
 
-	@PostMapping("")
+	@PostMapping
 	public ResponseEntity<?> create(@RequestBody Consultant request) {
 		return new ResponseEntity<Consultant>(service.create(request), HttpStatus.CREATED);
 	}
 
-	@PutMapping("")
+	@PutMapping
 	public ResponseEntity<?> update(@RequestBody Consultant request) {
 		if (null == request.getId()) {
 			return new ResponseEntity<Exception>(new Exception("Invalid Customer"), HttpStatus.BAD_GATEWAY);

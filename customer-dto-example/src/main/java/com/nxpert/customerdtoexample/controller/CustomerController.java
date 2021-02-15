@@ -1,7 +1,5 @@
 package com.nxpert.customerdtoexample.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -34,27 +32,22 @@ public class CustomerController {
 		return service.search(pageable, searchText);
 	}
 
-	@GetMapping("")
+	@GetMapping
 	public Page<CustomerDto> readAll(Pageable pageable) {
 		return service.readAll(pageable);
 	}
 	
 	@GetMapping("/{id}")
-	public Customer read(@PathVariable Integer id) {
-		return service.read(id).orElse(null);
+	public CustomerDto read(@PathVariable Integer id) {
+		return service.read(id);
 	}
 	
-	@GetMapping("/readByConsultantId/{id}")
-	public Page<CustomerDto> readConsultantByCoustomerId(Pageable pageable ,@PathVariable Integer id) {
-		return service.readByConsultantId(pageable,id);
-	}
-
-	@PostMapping("")
+	@PostMapping
 	public ResponseEntity<?> create(@RequestBody Customer request) {
 		return new ResponseEntity<Customer>(service.create(request), HttpStatus.CREATED);
 	}
 
-	@PutMapping("")
+	@PutMapping
 	public ResponseEntity<?> update(@RequestBody Customer request) {
 		if (null == request.getId()) {
 			return new ResponseEntity<Exception>(new Exception("Invalid Customer"), HttpStatus.BAD_GATEWAY);

@@ -22,6 +22,5 @@ public interface ConsultantService {
 
 	Optional<Consultant> read(Integer id);
 
-	Page<ConsultantDto> readByCoustomerId(Pageable pageable, Integer id);
 
 }

@@ -2,15 +2,10 @@ package com.nxpert.customerdtoexample.dto;
 
 import java.util.List;
 
-import javax.persistence.Column;
-
-import com.nxpert.customerdtoexample.model.Customer;
-
 public class ConsultantDto {
 	Integer id;
 	String name;
 	List<CustomerDto> customer;
-	
 	
 	public List<CustomerDto> getCustomer() {
 		return customer;

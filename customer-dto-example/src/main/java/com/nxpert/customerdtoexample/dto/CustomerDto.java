@@ -2,8 +2,6 @@ package com.nxpert.customerdtoexample.dto;
 
 import java.util.List;
 
-import javax.persistence.Column;
-
 public class CustomerDto {
 	Integer id;
 	String name;

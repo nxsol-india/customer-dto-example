@@ -6,18 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.nxpert.customerdtoexample.dto.CustomerDto;
 import com.nxpert.customerdtoexample.model.Customer;
-
-
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
 	@Query(value="SELECT c from Customer c where lower(c.name) like lower(?1)")
 	Page<Customer> search(Pageable pageable, String queriableText);
-	
-	@Query(value="SELECT  * FROM customer c where c.id IN (\n" + 
-			"SELECT cc.customer_id FROM  customer_consultants cc where cc.consultants_id = ?1)",nativeQuery = true)
-	Page<Customer> readByConsultantId(Pageable pageable, Integer id);
 }
